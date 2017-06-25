@@ -54,4 +54,12 @@ public class Time {
         
         return null;
     }
+    
+    public int getTamanhoLista(){
+        return listaJogador.size();
+    }
+    
+    public ArrayList<Jogador> getJogadores(){
+        return listaJogador;
+    }
 }
