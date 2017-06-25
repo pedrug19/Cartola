@@ -30,9 +30,10 @@ public class Cartola {
 
     /**
      * *************************************************************************
-     * ----------------MÉTODOS DE CADASTRO USANDO ARQUIVOS DE-------------------
-     * -----------------------------TEXTO---------------------------------------
+     * ----------------MÉTODOS DE CADASTRO USANDO ARQUIVOS DE
+     * TEXTO---------------
      * *************************************************************************
+     * @param nomearq
      */
     //Ler arquivo e cadastrar participante
     public static void cadastraParticipante(String nomearq) {
@@ -182,8 +183,9 @@ public class Cartola {
 
     /**
      * *************************************************************************
-     * -----------MÉTODOS AUXILIARES PARA AUXILIAR O----------------------------
-     * ----------------FUNCIONAMENTO DO PROGRAMA--------------------------------
+     * -----------MÉTODOS AUXILIARES PARA AUXILIAR O
+     * FUNCIONAMENTO---------------- ----------------------------DO
+     * PROGRAMA------------------------------------
      * *************************************************************************
      */
     //DETERMINAR ARTILHEIRO
@@ -401,6 +403,7 @@ public class Cartola {
      * *************************************************************************
      * ------------------------MÉTODO PRINCIPAL---------------------------------
      * *************************************************************************
+     * @param args
      */
     //Serve apenas para chamar as outras funções auxiliares
     public static void main(String[] args) {

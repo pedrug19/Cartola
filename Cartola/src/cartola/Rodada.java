@@ -19,6 +19,21 @@ public class Rodada {
 
     }
     
+    public void getInfo(){
+        System.out.println("Partida 1: ");
+        partida1.getPartidaNome();
+        System.out.println("Partida 2: ");
+        partida2.getPartidaNome();
+    }
+    
+    public Partida getPartida1(){
+        return partida1;
+    }
+    
+    public Partida getPartida2(){
+        return partida2;
+    }
+    
     public void setResultado(){
         partida1.getPartidaNome();
         partida1.setGolsJogo();

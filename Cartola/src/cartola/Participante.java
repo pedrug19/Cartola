@@ -64,10 +64,11 @@ public class Participante extends Pessoa {
     }
     
     public void setResultadosPartida(Partida partida){
-        System.out.println(this.getNome());
+        System.out.println("Participante: " + this.getNome());
         System.out.println("Resultado previsto: ");
-        System.out.println("");
+        System.out.println(partida.getNomeTime1() + ":");
         setGolsTime1(Integer.parseInt(e.nextLine()));
+        System.out.println(partida.getNomeTime2() + ":");
         setGolsTime2(Integer.parseInt(e.nextLine()));
     }
 
