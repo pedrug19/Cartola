@@ -18,7 +18,7 @@ public class Rodada {
         partida2 = new Partida(time3, time4);
 
     }
-    
+  
     public void getInfo(){
         System.out.println("Partida 1: ");
         partida1.getPartidaNome();
@@ -33,7 +33,7 @@ public class Rodada {
     public Partida getPartida2(){
         return partida2;
     }
-    
+  
     public void setResultado(){
         partida1.getPartidaNome();
         partida1.setGolsJogo();

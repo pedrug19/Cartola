@@ -180,7 +180,7 @@ public class Cartola {
             System.out.println("Erro ao ler arquivo." + e.getMessage());
         }
     }
-
+  
     /**
      * *************************************************************************
      * -----------MÉTODOS AUXILIARES PARA AUXILIAR O
@@ -257,6 +257,7 @@ public class Cartola {
     /*
     *       Esse método é tecnicamente o corpo do programa
      */
+
     public static void menuOpcoesAdm(Administrador adm) {
         int opc = 0, contaRodada = 1;
         int r = 1; //contador de rodadas
@@ -264,6 +265,7 @@ public class Cartola {
         String nomeArq;
         System.out.println("Bem vindo ao esfera.com\n\n");
         System.out.println("Este é o menu de opções de administrador. Digite o que deseja fazer: ");
+
 
         /*
         *   CADASTRO DE PARTICIPANTES E TIMES. CASO O NUMERO DE TIMES CHEGUE A 4, O 
@@ -357,13 +359,12 @@ public class Cartola {
                     if (r == 6) {
                         rodada[5] = new Rodada(listaTimes.get(2), listaTimes.get(1), listaTimes.get(3), listaTimes.get(0));
                     }
-
             }
 
         } while (opc != -1);
 
     }
-
+  
     /*
     *       Método para fazer login como administrador
     *       Você pode sair do programa principal algumas vezes antes da primeira
@@ -398,8 +399,7 @@ public class Cartola {
             loginAdm();
         }
     }
-
-    /**
+    /*
      * *************************************************************************
      * ------------------------MÉTODO PRINCIPAL---------------------------------
      * *************************************************************************
