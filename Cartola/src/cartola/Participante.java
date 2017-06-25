@@ -63,8 +63,12 @@ public class Participante extends Pessoa {
         this.golsTime2 = golsTime2;
     }
     
+    public void setArtilheiro(String artilheiro, String timeArtilheiro){
+        this.artilheiro = artilheiro;
+        this.timeArtilheiro = timeArtilheiro;
+    }
+    
     public void setResultadosPartida(Partida partida){
-        System.out.println("Participante: " + this.getNome());
         System.out.println("Resultado previsto: ");
         System.out.println(partida.getNomeTime1() + ":");
         setGolsTime1(Integer.parseInt(e.nextLine()));
@@ -73,10 +77,11 @@ public class Participante extends Pessoa {
     }
 
     public void getParticipante() {
-        System.out.println("Nome: " + nome);
+        System.out.println("\nNome: " + nome);
         System.out.println("Data de nascimento: " + dia + "/" + mes + "/" + ano);
         System.out.println("Login: " + login);
         System.out.println("Senha: " + senha);
+        System.out.println("Pontos: " + pontuacao + "\n");
     }
 
     public void contaPontos(Partida partida) {
