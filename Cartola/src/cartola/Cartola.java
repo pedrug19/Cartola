@@ -28,6 +28,13 @@ public class Cartola {
 
     static Scanner input = new Scanner(System.in);
 
+    /**
+     * *************************************************************************
+     * ----------------MÉTODOS DE CADASTRO USANDO ARQUIVOS DE
+     * TEXTO---------------
+     * *************************************************************************
+     * @param nomearq
+     */
     //Ler arquivo e cadastrar participante
     public static void cadastraParticipante(String nomearq) {
         try {
@@ -173,8 +180,19 @@ public class Cartola {
             System.out.println("Erro ao ler arquivo." + e.getMessage());
         }
     }
-
-    //Função para determinar o Artilheiro do campeonato
+  
+    /**
+     * *************************************************************************
+     * -----------MÉTODOS AUXILIARES PARA AUXILIAR O
+     * FUNCIONAMENTO---------------- ----------------------------DO
+     * PROGRAMA------------------------------------
+     * *************************************************************************
+     */
+    //DETERMINAR ARTILHEIRO
+    /*
+    *       Esse método determina o Artilheiro do campeonato
+    *       Será executada ao fim das rodadas
+     */
     public static void determinaArtilheiro() {
         //Busca time por time
         for (int i = 0; i < listaTimes.size(); i++) {
@@ -191,6 +209,55 @@ public class Cartola {
         }
     }
 
+    //MÉTODO PARA CADASTRAR AS APOSTAS DE CADA PARTICIPANTE
+    /*
+    *       Esse método cadastra cada palpite dos participantes
+    *       Incluindo os administradores
+    *       Não é preciso fazer login
+     */
+    public static void fazerApostas(int r, Rodada rodada, Administrador adm) {
+        int i;
+
+        System.out.println("Fazendo apostas: ");
+        System.out.println("Rodada " + r);
+
+        rodada.getInfo(); //mostrar as informações das rodadas para as apostas
+
+        for (i = 0; i < listaPart.size(); i++) {
+            listaPart.get(i).setResultadosPartida(rodada.getPartida1()); //Cada Participante dá palpites para as partidas
+            listaPart.get(i).setResultadosPartida(rodada.getPartida2());
+        }
+
+        System.out.println("Administrador fazendo apostas: ");
+        for (i = 0; i < listaAdm.size(); i++) {
+            System.out.println("Administrador: " + listaAdm.get(i).getNome());
+            listaAdm.get(i).setResultadosPartida(rodada.getPartida1());
+            listaAdm.get(i).setResultadosPartida(rodada.getPartida2());
+        }
+
+        //Cadastrando o resultado real da partida
+        System.out.println("Administrador, cadastre o resultado real das partidas: ");
+        adm.setResultadoRodada(rodada);
+
+        //Contando os pontos para cada Participante
+        for (i = 0; i < listaPart.size(); i++) {
+            listaPart.get(i).contaPontos(rodada.getPartida1()); //verificando se o participante acertou
+            listaPart.get(i).contaPontos(rodada.getPartida2());
+        }
+
+        //Contando os pontos para cada Administrador
+        for (i = 0; i < listaAdm.size(); i++) {
+            listaAdm.get(i).contaPontos(rodada.getPartida1()); //verificando se o administrador acertou
+            listaAdm.get(i).contaPontos(rodada.getPartida2());
+        }
+
+    }
+
+    //MENU DE OPÇÕES DO ADMINISTRADOR
+    /*
+    *       Esse método é tecnicamente o corpo do programa
+     */
+
     public static void menuOpcoesAdm(Administrador adm) {
         int opc = 0, contaRodada = 1;
         int r = 1; //contador de rodadas
@@ -199,8 +266,10 @@ public class Cartola {
         System.out.println("Bem vindo ao esfera.com\n\n");
         System.out.println("Este é o menu de opções de administrador. Digite o que deseja fazer: ");
 
-        /*CADASTRO DE PARTICIPANTES E TIMES. CASO O NUMERO DE TIMES CHEGUE A 4, O 
-        * SISTEMA NÃO DEIXA MAIS NENHUM ADMINISTRADOR CADASTRAR TIMES, APENAS PARTICIPANTES
+
+        /*
+        *   CADASTRO DE PARTICIPANTES E TIMES. CASO O NUMERO DE TIMES CHEGUE A 4, O 
+        *   SISTEMA NÃO DEIXA MAIS NENHUM ADMINISTRADOR CADASTRAR TIMES, APENAS PARTICIPANTES
          */
         do {
             System.out.println("1 - Cadastrar Time");
@@ -239,7 +308,8 @@ public class Cartola {
         } while (opc != 4);
 
         /*
-        *   INÍCIO DO CAMPEONATO, NÃO PODE MAIS MUDAR DE ADM
+        *   !!!!!!!INÍCIO DO CAMPEONATO, NÃO PODE MAIS MUDAR DE ADM!!!!!!!!!!!
+        *         (OBS: DARIA MUITO TRABALHO SE PUDESSE MUDAR DE ADM)
          */
         System.out.println("\n\nO campeonato começou! Registre os resultados e apostas dos participantes!");
         opc = 0;
@@ -270,6 +340,7 @@ public class Cartola {
                     }
                     break;
                 case 3:
+                    //Criando os objetos de rodada, de acordo com as rodadas
                     if (r == 1) {
                         rodada[0] = new Rodada(listaTimes.get(0), listaTimes.get(1), listaTimes.get(2), listaTimes.get(3));
                     }
@@ -293,8 +364,13 @@ public class Cartola {
         } while (opc != -1);
 
     }
-
-    //para fazer login do Administrador
+  
+    /*
+    *       Método para fazer login como administrador
+    *       Você pode sair do programa principal algumas vezes antes da primeira
+    *       rodada começar.
+    *       Mas assim que a rodada começa, não é possivel mais fazer login
+     */
     public static void loginAdm() {
         String log, passw;
         int i;
@@ -323,7 +399,13 @@ public class Cartola {
             loginAdm();
         }
     }
-
+    /*
+     * *************************************************************************
+     * ------------------------MÉTODO PRINCIPAL---------------------------------
+     * *************************************************************************
+     * @param args
+     */
+    //Serve apenas para chamar as outras funções auxiliares
     public static void main(String[] args) {
 
         cadastraAdm();
