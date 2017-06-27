@@ -15,6 +15,7 @@ public class Cartola {
     static ArrayList<Participante> listaPart = new ArrayList<>();
     static ArrayList<Administrador> listaAdm = new ArrayList<>();
     public static ArrayList<Time> listaTimes = new ArrayList<>();
+    static ArrayList<Participante> listaFinal = new ArrayList<>();
 
     static Participante part;
     static Administrador adm;
@@ -441,25 +442,33 @@ public class Cartola {
                     break;
             }
 
-        } while (opc != 4 && r < 7);
+        } while (opc != 5 && r < 7);
 
         //Saindo do programa caso opc == 4
-        if (opc == 4) {
+        if (opc == 5) {
             return;
         }
 
         //Somando os pontos finais ao final das rodadas
         for (int i = 0; i < listaPart.size(); i++) {
             listaPart.get(i).somaPontosFinais(artilheiro, timeArtilheiro);
+            listaFinal.add(listaPart.get(i));
         }
 
         for (int i = 0; i < listaAdm.size(); i++) {
             listaAdm.get(i).somaPontosFinais(artilheiro, timeArtilheiro);
+            listaFinal.add(listaAdm.get(i));
         }
 
         determinaVencedorBolao();
-        System.out.println("O vencedor do bolão é o participante " + vencedor + " com " + maxPontos + " pontos!");
+        System.out.println("O vencedor do bolão é o participante " + vencedor + " com " + maxPontos + " pontos!\n");
+        System.out.println("Ranking final: \n");
+        Collections.sort(listaFinal, new Comparador()); //Esse comando irá ordenar o ranking.
+        for(int i = 0; i < listaFinal.size(); i++){
+            System.out.println((i+1) + " - " + listaFinal.get(i).getNome() + " " + listaFinal.get(i).getPontuacao() + " pontos");
+        }
         System.out.println("Obrigado por jogar o bolão do Esfera.com!");
+        return;
 
     }
   
