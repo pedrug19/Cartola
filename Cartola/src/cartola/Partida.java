@@ -46,7 +46,7 @@ public class Partida {
     }
 
     public void getResultadoPartida() {
-        System.out.println(time1.getNome() + qtdGolsPrimTime + " X " + qtdGolsSegunTime + time2.getNome());
+        System.out.println(time1.getNome() + " " + qtdGolsPrimTime + " X " + qtdGolsSegunTime + " " + time2.getNome());
         System.out.println(time1.getEstadio());
     }
 
